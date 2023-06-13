@@ -1,0 +1,23 @@
+<body>
+    <div class="login">
+        <br><br><br><br><br><br>
+        <h1>Login Admin</h1>
+
+             {{#if mensagemErro}}
+      <div class="msg-erro">
+            {{mensagemErro}}
+        </div>
+        {{/if}}
+
+        <form action="" method="post">
+            <input type="text" name="usuario" id="usuario" class="input-field" placeholder="* Usuário" />
+            <input type="password" name="senha" id="senha" class="input-field" placeholder="* Senha" />
+            <button type="submit" class="botao">
+                Acessar
+            </button>
+        </form>
+<br><br>
+        <a href="/cadastrar-usuario">Não tem login? Cadastre-se</a>
+    </div>
+</body>
+</html>
