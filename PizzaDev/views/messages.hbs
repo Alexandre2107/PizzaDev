@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PizzaDev - Mensagens</title>
+</head>
+<body>
+  <h1>Mensagens Recebidas</h1>
+  
+  {{#if messages.length}}
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Mensagem</th>
+        <th>Ações</th>
+      </tr>
+      {{#each messages}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.email}}</td>
+          <td>{{this.message}}</td>
+          <td>
+            <a href="/admin/message/delete/{{this._id}}">Excluir</a>
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  {{else}}
+    <p>Não há mensagens para exibir.</p>
+  {{/if}}
+  
+  <a href="/admin">Voltar</a>
+</body>
+</html>

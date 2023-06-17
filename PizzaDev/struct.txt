@@ -1,0 +1,30 @@
+- app.js
+- package.json
+- public/
+  - css/
+    - style.css
+  - js/
+    - script.js
+- views/
+  - layouts/
+    - main.hbs
+  - index.hbs
+  - admin.hbs
+  - login.hbs
+  - messages.hbs
+- controllers/
+  - pizzaController.js
+  - userController.js
+- models/
+  - pizzaModel.js
+  - userModel.js
+- routes/
+  - index.js
+  - admin.js
+  - auth.js
+  - pizza.js
+  - user.js
+- middleware/
+  - authMiddleware.js
+- config/
+  - db.js
