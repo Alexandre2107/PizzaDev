@@ -1,4 +1,26 @@
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
+
+
+const generateSecretKey = () => {
+  const length = 32;
+  return crypto.randomBytes(length).toString('hex');
+}
+
+const secretKey = '123123';
+
+const generateToken = (user) => {
+  const payload = {
+    id: user.id,
+    usuario: user.usuario,
+  }
+
+  const options = {
+    expiresIn: '1h',
+  }
+
+  return jwt.sign(payload, secretKey, options);
+}
 
 const authMiddleware = (req, res, next) => {
   // Verifica se o token de autenticação está presente nos headers da requisição
@@ -10,7 +32,7 @@ const authMiddleware = (req, res, next) => {
 
   try {
     // Verifica a validade do token e decodifica as informações
-    const decoded = jwt.verify(token, 'sua_chave_secreta');
+    const decoded = jwt.verify(token, secretKey);
 
     // Adiciona as informações do usuário ao objeto de requisição
     req.user = decoded;
@@ -22,4 +44,7 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-module.exports = authMiddleware;
+module.exports = {
+  generateToken,
+  authMiddleware
+}

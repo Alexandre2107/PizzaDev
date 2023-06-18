@@ -1,32 +1,32 @@
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 const UserController = {
   login: async (req, res) => {
-    const { username, password } = req.body;
+    const { usuario, senha } = req.body;
 
     try {
       // Verificar se o usuário existe no banco de dados
-      const user = await User.findOne({ username });
+      const user = await User.findOne({ usuario });
 
       if (!user) {
         return res.status(404).json({ message: 'Usuário não encontrado' });
       }
 
+      console.log(user);
+      console.log(req.body);
       // Verificar se a senha está correta
-      const isPasswordMatch = await bcrypt.compare(password, user.password);
+      const isPasswordMatch = await bcrypt.compare(senha, user.senha);
 
       if (!isPasswordMatch) {
         return res.status(401).json({ message: 'Credenciais inválidas' });
       }
 
       // Gerar o token de autenticação
-      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-        expiresIn: '1h',
-      });
-
-      res.status(200).json({ token });
+      const token = authMiddleware.generateToken(user);
+      req.session.token = token;
+      res.redirect('/admin');
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: 'Erro ao fazer login' });
@@ -34,9 +34,10 @@ const UserController = {
   },
 
   createUser: async (req, res) => {
-    const { nomeCompleto, usuario, senha, confirmarSenha } = req.body;
-  
     try {
+      const { nomeCompleto, usuario, senha, confirmarSenha } = req.body;
+      console.log(req.body);
+      console.log(usuario);
       // Verifica se a senha e a confirmação de senha correspondem
       if (senha !== confirmarSenha) {
         return res.status(400).send('A senha e a confirmação de senha não correspondem');
@@ -122,7 +123,7 @@ const UserController = {
   logout: (req, res) => {
     // Limpar dados de autenticação
     req.session.destroy();
-    res.redirect('/login');
+    res.redirect('/auth/login');
   },
 
   getAllUsersAdmin: async (req, res) => {

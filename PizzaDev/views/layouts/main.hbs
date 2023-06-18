@@ -11,12 +11,12 @@
     <nav>
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/menu">Cardápio</a></li>
+        <li><a href="/pizzas">Cardápio</a></li>
         {{#if isAuthenticated}}
           <li><a href="/admin">Área Administrativa</a></li>
           <li><a href="/logout">Sair</a></li>
         {{else}}
-          <li><a href="/login">Login</a></li>
+          <li><a href="/auth/login">Login</a></li>
         {{/if}}
       </ul>
     </nav>

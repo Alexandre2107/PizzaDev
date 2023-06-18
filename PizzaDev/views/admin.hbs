@@ -8,7 +8,7 @@
   <h1>Área Administrativa</h1>
   
   <h2>Cadastro de Pizza</h2>
-  <form action="/admin/pizza/create" method="POST">
+  <form action="/admin/pizzas" method="POST">
     <label for="name">Nome:</label>
     <input type="text" name="name" required><br>
     
@@ -28,6 +28,6 @@
     {{/each}}
   </ul>
   
-  <a href="/logout">Sair</a>
+  <a href="/auth/logout">Sair</a>
 </body>
 </html>

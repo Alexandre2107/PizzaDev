@@ -5,7 +5,7 @@ async function getConnection() {
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: 'Alex210703',
+        password: '1017@Password',
         database: 'pizzadev'
     });
     return connection;
@@ -24,7 +24,7 @@ module.exports = { query }
 
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('pizzadev', 'root', 'Alex210703', {
+const sequelize = new Sequelize('pizzadev', 'root', '1017@Password', {
   host: 'localhost',
   dialect: 'mysql',
 });

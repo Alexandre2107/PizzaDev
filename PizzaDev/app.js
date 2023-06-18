@@ -15,7 +15,7 @@ const app = express();
 
 // Configuração do Handlebars como mecanismo de visualização
 app.engine(
-  'handlebars',
+  'hbs',
   exphbs.engine({
     extname: '.hbs',
     defaultLayout: 'main',

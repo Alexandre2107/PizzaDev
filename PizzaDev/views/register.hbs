@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PizzaDev - Cadastro</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Cadastro</h1>
+
+  {{#if error}}
+    <p class="error">{{error}}</p>
+  {{/if}}
+
+  <form action="/auth/register" method="POST">
+    <label for="nomeCompleto">Nome Completo</label>
+    <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+
+    <label for="usuario">Usuário</label>
+    <input type="text" id="usuario" name="usuario" required>
+
+    <label for="senha">Senha</label>
+    <input type="password" id="senha" name="senha" required>
+
+    <label for="confirmarSenha">Confirmar Senha</label>
+    <input type="password" id="confirmarSenha" name="confirmarSenha" required>
+
+    <button type="submit">Cadastrar</button>
+  </form>
+</body>
+</html>

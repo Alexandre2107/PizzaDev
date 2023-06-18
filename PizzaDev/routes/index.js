@@ -17,14 +17,14 @@ router.post('/logout', UserController.logout);
 // Rotas das pizzas
 router.get('/pizzas', PizzaController.getAllPizzas);
 router.get('/pizzas/:id', PizzaController.getPizzaById);
-router.post('/pizzas', authMiddleware, PizzaController.createPizza);
-router.put('/pizzas/:id', authMiddleware, PizzaController.updatePizza);
-router.delete('/pizzas/:id', authMiddleware, PizzaController.deletePizza);
+router.post('/pizzas', authMiddleware.authMiddleware, PizzaController.createPizza);
+router.put('/pizzas/:id', authMiddleware.authMiddleware, PizzaController.updatePizza);
+router.delete('/pizzas/:id', authMiddleware.authMiddleware, PizzaController.deletePizza);
 
 // Rotas dos usuários
-router.get('/users', authMiddleware, UserController.getAllUsers);
+router.get('/users', authMiddleware.authMiddleware, UserController.getAllUsers);
 router.post('/users', UserController.createUser);
-router.put('/users/:id', authMiddleware, UserController.editUser);
-router.delete('/users/:id', authMiddleware, UserController.deleteUser);
+router.put('/users/:id', authMiddleware.authMiddleware, UserController.editUser);
+router.delete('/users/:id', authMiddleware.authMiddleware, UserController.deleteUser);
 
 module.exports = router;
