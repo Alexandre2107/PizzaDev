@@ -52,6 +52,8 @@ const PizzaController = {
         const { id } = req.params;
         const { nome, descricao, precoBrotinho, precoMedia, precoGrande } = req.body;
 
+        console.log(req.body);
+
         try {
             await Pizza.update(
                 {

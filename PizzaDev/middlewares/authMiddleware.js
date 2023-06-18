@@ -24,7 +24,7 @@ const generateToken = (user) => {
 
 const authMiddleware = (req, res, next) => {
   // Verifica se o token de autenticação está presente nos headers da requisição
-  const token = req.headers.authorization;
+  const token = req.session.token;
 
   if (!token) {
     return res.status(401).json({ error: 'Token de autenticação não fornecido' });
