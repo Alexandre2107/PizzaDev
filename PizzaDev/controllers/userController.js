@@ -11,16 +11,16 @@ const UserController = {
       const user = await User.findOne({ usuario });
 
       if (!user) {
-        return res.status(404).json({ message: 'Usuário não encontrado' });
+        const error = "Usuario não encontrado";
+        return res.render("login", error);
       }
 
-      console.log(user);
-      console.log(req.body);
       // Verificar se a senha está correta
       const isPasswordMatch = await bcrypt.compare(senha, user.senha);
 
       if (!isPasswordMatch) {
-        return res.status(401).json({ message: 'Credenciais inválidas' });
+        const error = "Credenciais invalidas";
+        return res.render("login", error);
       }
 
       // Gerar o token de autenticação
@@ -36,39 +36,44 @@ const UserController = {
   createUser: async (req, res) => {
     try {
       const { nomeCompleto, usuario, senha, confirmarSenha } = req.body;
-      console.log(req.body);
-      console.log(usuario);
       // Verifica se a senha e a confirmação de senha correspondem
       if (senha !== confirmarSenha) {
-        return res.status(400).send('A senha e a confirmação de senha não correspondem');
+        const error = "A senha é diferente da senha de confirmação";
+        return res.render('register', {error})
       }
   
       // Verifica se o usuário já existe no banco de dados
       const existingUser = await User.findOne({ where: { usuario } });
       if (existingUser) {
-        return res.status(400).send('O usuário já está cadastrado');
+        const error = "Nome de usuario indisponível";
+        return res.render('register', {error});
       }
   
       // Criptografa a senha
       const hashedPassword = await bcrypt.hash(senha, 10);
   
       // Cria o usuário no banco de dados
-      await User.create({
+      const user = await User.create({
         nomeCompleto,
         usuario,
         senha: hashedPassword,
       });
-  
-      res.status(201).send('Usuário criado com sucesso');
+
+      const token = authMiddleware.generateToken(user);
+
+      req.session.token = token;
+
+      res.redirect('/admin');
     } catch (error) {
-      console.error('Erro ao criar usuário:', error);
-      res.status(500).send('Erro ao criar usuário');
+      const err = ('Erro ao criar usuário: ${error}');
+      return res.render('register', {err});
     }
   },
 
   getAllUsers: async (req, res) => {
     try {
       const users = await User.findAll();
+      console.log(users);
       res.render('users', { users });
     } catch (error) {
       console.error('Erro ao obter usuários:', error);
@@ -113,6 +118,7 @@ const UserController = {
   
     try {
       await User.destroy({ where: { id } });
+      const msg = "Usuario deleteado com sucesso";
       res.redirect('/admin/users');
     } catch (error) {
       console.error('Erro ao excluir usuário:', error);
@@ -123,14 +129,14 @@ const UserController = {
   logout: (req, res) => {
     // Limpar dados de autenticação
     req.session.destroy();
-    res.redirect('/auth/login');
+    res.redirect('/login');
   },
 
   getAllUsersAdmin: async (req, res) => {
     try {
-      const users = await User.find();
-
-      res.render('admin', { users });
+      const users = await User.findAll();
+      console.log(users);
+      res.render('users', { users });
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: 'Erro ao buscar usuários' });
@@ -145,7 +151,7 @@ const UserController = {
     const { id } = req.params;
 
     try {
-      const user = await User.findById(id);
+      const user = await User.findOne({where: {id}});
 
       if (!user) {
         return res.status(404).json({ message: 'Usuário não encontrado' });

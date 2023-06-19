@@ -52,7 +52,7 @@ db.sync()
 // Rotas
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
-app.use('/auth', authRouter);
+app.use('/', authRouter);
 app.use('/pizza', pizzaRouter);
 app.use('/user', userRouter);
 

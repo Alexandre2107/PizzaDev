@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const PizzaController = require('../controllers/pizzaController');
 const UserController = require('../controllers/userController');
+const MessageController = require('../controllers/messageController');
 const authMiddleware = require('../middlewares/authMiddleware');
+
 
 // Rota principal
 router.get('/', (req, res) => {
@@ -13,6 +15,8 @@ router.get('/', (req, res) => {
 // Rotas de autenticação
 router.post('/login', UserController.login);
 router.post('/logout', UserController.logout);
+
+router.post('/message', MessageController.createMessage);
 
 // Rotas das pizzas
 router.get('/pizzas', PizzaController.getAllPizzas);

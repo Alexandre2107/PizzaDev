@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Usuários</title>
+</head>
+<body>
+
+  {{#if msg}}
+    <p class="msg">{{msg}}</p>
+  {{/if}}
+
+  <h1>Lista de Usuários</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Usuário</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+      <tr>
+        <td>{{this.dataValues.nomeCompleto}}</td>
+        <td>{{this.dataValues.usuario}}</td>
+        <td>
+          <a href="/admin/users/edit/{{this.dataValues.id}}">Editar</a>
+          <a href="/admin/users/delete/{{this.dataValues.id}}">Excluir</a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <a href="/register">Novo Usuário</a>
+
+  {{#if currentUser}}
+    <h2>Editar Usuário</h2>
+
+    <form action="/users/edit/{{currentUser.id}}" method="POST">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" value="{{currentUser.nome}}" required><br>
+
+      <label for="usuario">Usuário:</label>
+      <input type="text" id="usuario" name="usuario" value="{{currentUser.usuario}}" required><br>
+
+      <input type="submit" value="Salvar">
+    </form>
+  {{/if}}
+
+</body>
+</html>

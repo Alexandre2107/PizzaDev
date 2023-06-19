@@ -7,7 +7,11 @@
 <body>
   <h1>Login</h1>
   
-  <form action="/auth/login" method="POST">
+  {{#if error}}
+    <p class="error">{{error}}</p>
+  {{/if}}
+
+  <form action="/login" method="POST">
     <label for="usuario">Usuário:</label>
     <input type="text" name="usuario" required><br>
     
@@ -17,6 +21,6 @@
     <input type="submit" value="Entrar">
   </form>
   
-  <p>Não possui cadastro? <a href="/auth/register">Clique aqui</a> para se cadastrar.</p>
+  <p>Não possui cadastro? <a href="/register">Clique aqui</a> para se cadastrar.</p>
 </body>
 </html>

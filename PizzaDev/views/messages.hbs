@@ -10,18 +10,18 @@
   {{#if messages.length}}
     <table>
       <tr>
-        <th>Nome</th>
+        <th>Titulo</th>
         <th>Email</th>
         <th>Mensagem</th>
         <th>Ações</th>
       </tr>
       {{#each messages}}
         <tr>
-          <td>{{this.name}}</td>
-          <td>{{this.email}}</td>
-          <td>{{this.message}}</td>
+          <td>{{this.dataValues.titulo}}</td>
+          <td>{{this.dataValues.email}}</td>
+          <td>{{this.dataValues.mensagem}}</td>
           <td>
-            <a href="/admin/message/delete/{{this._id}}">Excluir</a>
+            <a href="/admin/message/delete/{{this.dataValues.id}}">Excluir</a>
           </td>
         </tr>
       {{/each}}

@@ -2,16 +2,13 @@ const express = require('express');
 const router = express.Router();
 const PizzaController = require('../controllers/pizzaController');
 const UserController = require('../controllers/userController');
+const MessageController = require('../controllers/messageController');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 // Rota principal do painel administrativo
-router.get('/', (req, res) => {
+router.get('/', authMiddleware.authMiddleware, (req, res) => {
   // Lógica para exibir a página principal do painel administrativo
-  if(req.session.token){
-    res.render('admin');
-  } else {
-    res.redirect('/login');
-  }
+  res.render('admin');
 });
 
 // Rotas de gerenciamento de pizzas
@@ -28,6 +25,9 @@ router.get('/users/create', authMiddleware.authMiddleware, UserController.create
 router.post('/users', authMiddleware.authMiddleware, UserController.createUser);
 router.get('/users/edit/:id', authMiddleware.authMiddleware, UserController.editUserForm);
 router.put('/users/:id', authMiddleware.authMiddleware, UserController.editUser);
-router.delete('/users/:id', authMiddleware.authMiddleware, UserController.deleteUser);
+router.get('/users/delete/:id', authMiddleware.authMiddleware, UserController.deleteUser);
+
+router.get('/message', authMiddleware.authMiddleware, MessageController.getAllMessages);
+router.get('/message/delete/:id', authMiddleware.authMiddleware, MessageController.deleteMessage)
 
 module.exports = router;
