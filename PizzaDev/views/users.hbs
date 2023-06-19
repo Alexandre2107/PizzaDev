@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Usuários</title>
+  <script src="/scripts.js"></script>
 </head>
 <body>
 
@@ -12,7 +13,7 @@
 
   <h1>Lista de Usuários</h1>
 
-  <table>
+  <table c>
     <thead>
       <tr>
         <th>Nome</th>
@@ -27,7 +28,7 @@
         <td>{{this.dataValues.usuario}}</td>
         <td>
           <a href="/admin/users/edit/{{this.dataValues.id}}">Editar</a>
-          <a href="/admin/users/delete/{{this.dataValues.id}}">Excluir</a>
+          <a class="btn-excluir" href="/admin/users/delete/{{this.dataValues.id}}">Excluir</a>
         </td>
       </tr>
       {{/each}}

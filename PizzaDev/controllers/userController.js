@@ -8,7 +8,7 @@ const UserController = {
 
     try {
       // Verificar se o usuário existe no banco de dados
-      const user = await User.findOne({ usuario });
+      const user = await User.findOne({where: {usuario} });
 
       if (!user) {
         const error = "Usuario não encontrado";
@@ -28,8 +28,8 @@ const UserController = {
       req.session.token = token;
       res.redirect('/admin');
     } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: 'Erro ao fazer login' });
+      const err = "Erro ao fazer login";
+      return res.render("login", error);
     }
   },
 

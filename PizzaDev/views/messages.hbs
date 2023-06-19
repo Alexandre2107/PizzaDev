@@ -21,7 +21,7 @@
           <td>{{this.dataValues.email}}</td>
           <td>{{this.dataValues.mensagem}}</td>
           <td>
-            <a href="/admin/message/delete/{{this.dataValues.id}}">Excluir</a>
+            <a class="btn-excluir" href="/admin/message/delete/{{this.dataValues.id}}" onclick='confirmDelete()'>Excluir</a>
           </td>
         </tr>
       {{/each}}

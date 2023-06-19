@@ -27,8 +27,7 @@ const authMiddleware = (req, res, next) => {
   const token = req.session.token;
 
   if (!token) {
-    res.next("/login");
-    return res.status(401).json({ error: 'Token de autenticação não fornecido' });
+    return res.redirect('/login');
   }
 
   try {
@@ -41,8 +40,7 @@ const authMiddleware = (req, res, next) => {
     // Permite que a requisição continue para o próximo middleware ou rota
     next();
   } catch (error) {
-    res.next("/login");
-    return res.status(401).json({ error: 'Token de autenticação inválido' });
+    return res.redirect('/login');
   }
 };
 
