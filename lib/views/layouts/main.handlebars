@@ -38,6 +38,7 @@
                     <li><a class="title" href="/#about">Sobre</a></li>
                     <li><a class="title" href="/#services">Serviços</a></li>
                     <li><a class="title" href="/#contact">Contato</a></li>
+                    <li><a class="title" href="/login">Login</a></li>
                 </ul>
             </div>
             <div class="toggle icon-menu"></div>
@@ -49,6 +50,19 @@
         {{{body}}}
     </div>
     <script src="public/js/main.js"></script>
+
+    <script>
+        const tabela = document.querySelector("table");
+tabela.addEventListener("click", (event) => {
+    let isBotaoExcluir = event.target.classList.contains("btn-excluir");
+    if (isBotaoExcluir && !confirm("Tem certeza que deseja excluir este item?")) {
+        event.preventDefault();
+    }
+
+    
+});
+    </script>
+
 
 </body>
 
