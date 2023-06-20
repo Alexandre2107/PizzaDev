@@ -475,6 +475,7 @@ footer .social a {
 
     nav .menu ul a.title {
         font: 400 1rem var(--title-font);
+        color: black;
     }
 
     nav .icon-menu {

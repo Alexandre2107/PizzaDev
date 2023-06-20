@@ -1,0 +1,31 @@
+<body>
+
+    <br><br><br>
+    <div class="pagina container">
+        <div class="cabecalho flex bordered">
+            <h1>Cadastrar Usuário</h1>
+            <a href="/login" class="botao">
+                Voltar
+            </a>
+        </div>
+
+
+        {{#if mensagemErro}}
+            <div class="msg-erro">
+            {{mensagemErro}}
+        </div>
+        {{/if}}
+  
+
+        <form href="/cadastrar-usuario" method="post">
+            <input type="text" name="nomeCompleto" id="nomeCompleto" class="input-field" placeholder="* Nome completo" required/>
+            <input type="text" name="usuario" id="usuario" class="input-field" placeholder="* Usuário" required/>
+            <input type="password" name="senha" id="senha" class="input-field" placeholder="* Senha" required/>
+            <input type="password" name="confirmarSenha" id="confirmarSenha" class="input-field" placeholder="* Confirmar senha" required/>
+            <button type="submit" class="botao">
+                Cadastrar
+            </button>
+        </form>
+    </div>
+</body>
+</html>

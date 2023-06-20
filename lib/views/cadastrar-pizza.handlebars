@@ -1,0 +1,35 @@
+<body>
+
+    <br><br><br>
+    <div class="pagina container">
+        <div class="cabecalho flex bordered">
+            <h1>Cadastrar Pizza</h1>
+            <a href="/admin/pizzas" class="botao">
+                Voltar
+            </a>
+        </div>
+
+
+        {{!-- {{#if mensagemErro}}
+      <div class="msg-erro">
+            {{mensagemErro}}
+        </div>
+        {{/if}} --}}
+        
+
+        <form action="" method="post">
+            <input type="text" name="nome" id="nome" class="input-field" placeholder="* Nome da Pizza" required/>
+            <textarea name="descricao" id="descricao" cols="1" rows="6" class="input-field" placeholder="* Descrição dos Ingredientes" required></textarea>
+            <div class="group-field flex">
+                <input type="number" name="precoBrotinho" id="precoBrotinho" class="input-field" step=".01" min="0" placeholder="* Preço Brotinho" required/>
+                <input type="number" name="precoMedia" id="precoMedia" class="input-field" step=".01" min="0" placeholder="* Preço Média" required/>
+                <input type="number" name="precoGrande" id="precoGrande" class="input-field" step=".01" min="0" placeholder="* Preço Grande" required/>
+            </div>
+            <input type="text" name="foto" id="foto" class="input-field" placeholder="Foto (ex: pizza-calabresa.jpg)" required />
+            <button type="submit" class="botao">
+                Cadastrar
+            </button>
+        </form>
+    </div>
+</body>
+</html>

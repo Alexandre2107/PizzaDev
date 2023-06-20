@@ -1,0 +1,32 @@
+<body>
+    <div class="pagina container">
+        <div class="cabecalho flex bordered">
+            <h1>Editar Pizza</h1>
+            <a href="/admin/pizzas" class="botao">
+                Voltar
+            </a>
+        </div>
+
+        {{#if mensagemErro}}
+      <div class="msg-erro">
+            {{mensagemErro}}
+        </div>
+        {{/if}}
+        
+        <form action="" method="post">
+            <input type="text"  name="nome" value="{{pizza.dataValues.nome}}" id="nome" class="input-field" placeholder="* Nome da Pizza" required/>
+            <textarea  name="descricao" id="descricao" cols="1" rows="6" class="input-field" placeholder="* Descrição dos Ingredientes" required>{{pizza.dataValues.descricao}}</textarea>
+            <div class="group-field flex">
+                <input type="number" name="precoBrotinho"  value="{{pizza.dataValues.precoBrotinho}}" id="precoBrotinho"  class="input-field" step=".01" min="0" placeholder="* Preço Brotinho" required/>
+                <input type="number" name="precoMedia"  value="{{pizza.dataValues.precoMedia}}" id="precoMedia" class="input-field" step=".01" min="0" placeholder="* Preço Média" required/>
+                <input type="number" name="precoGrande"  value="{{pizza.dataValues.precoGrande}}" id="precoGrande" class="input-field" step=".01" min="0" placeholder="* Preço Grande" required/>
+            </div>
+            <input type="text" name="foto"  value="{{pizza.dataValues.foto}}" id="foto" class="input-field" placeholder="Foto (ex: pizza-calabresa.jpg)" required/>
+            <input type="hidden" name="id" value="{{pizza.dataValues.id}}" required>
+            <button type="submit" class="botao">
+                Salvar
+            </button>
+        </form>
+    </div>
+</body>
+</html>

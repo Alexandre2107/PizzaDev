@@ -1,0 +1,60 @@
+
+<body>
+    <div class="pagina container">
+        <div class="cabecalho flex">
+            <a href="/admin/cadastrar-pizza" class="botao">
+                Nova Pizza
+            </a>
+        </div>
+
+        {{#if listaPizzas}}
+        <div class="tabela-responsiva">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="85">Foto</th>
+                        <th>Pizza</th>
+                        <th width="130">Brotinho</th>
+                        <th width="130">Média</th>
+                        <th width="130">Grande</th>
+                        <th width="195" colspan="2"></th>
+                    </tr>
+                </thead>
+                {{#each listaPizzas}}
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src= "/images/{{this.dataValues.foto}}" alt="" />
+                        </td>
+                        <td>
+                            <h3>{{this.dataValues.nome}}</h3>
+                            <p>{{this.dataValues.descricao}}</p>
+                        </td>
+                        <td>
+                            R$ {{this.dataValues.precoBrotinho}}
+                        </td>
+                        <td>
+                            R$ {{this.dataValues.precoMedia}}
+                        </td>
+                        <td>
+                            R$ {{this.dataValues.precoGrande}}
+                        </td>
+                        <td>
+                            <a href="/admin/editar-pizza/{{this.dataValues.id}}" class="btn-editar">
+                                <i class="fa-solid fa-pen-to-square"></i> Editar
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/admin/delete/{{this.dataValues.id}}" class="btn-excluir">
+                                <i class="fa-regular fa-trash-can"></i> Excluir
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        {{/if}}
+    </div>
+</body>
+</html>

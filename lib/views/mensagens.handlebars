@@ -1,0 +1,51 @@
+<body>
+    <div class="pagina container">
+        <div class="cabecalho flex">
+            <br />
+        </div>
+
+        {{#if mensagemErro}}
+            <div class="msg-erro">
+            {{mensagemErro}}
+        </div>
+        {{/if}}
+
+        <div class="tabela-responsiva">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome completo</th>
+                        <th>E-mail</th>
+                        <th>Assunto</th>
+                        <th>Mensagem</th>
+                        <th width="95"></th>
+                    </tr>
+                </thead>
+                {{#each listaMensagens}}
+                <tbody>
+                    <tr>
+                        <td>
+                            {{this.dataValues.nome}}
+                        </td>
+                        <td>
+                            {{this.dataValues.email}}
+                        </td>
+                        <td>
+                            {{this.dataValues.titulo}}
+                        </td>
+                        <td>
+                            {{this.dataValues.mensagem}}
+                        </td>
+                        <td>
+                            <a href="/admin/message/{{this.dataValues.id}}" class="btn-excluir">
+                                <i class="fa-regular fa-trash-can"></i> Excluir
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
