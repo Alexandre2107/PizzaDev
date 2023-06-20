@@ -4,6 +4,7 @@
 
 <body>
     <main>
+
         <!-- Primeira página -->
         <section class="section" id="home">
             <div class="container grid">
@@ -25,12 +26,20 @@
         <section class="section" id="cardapio">
             <div class="container">
                 <h2 class="title">Cardápio</h2>
+                {{#if pizzaErro}}
+                    <div class="msg-erro">
+                        {{pizzaErro}}
+                    </div>
+                    {{/if}}
+                    {{#if listaPizza}}
+                    {{#each listaPizzas}}
                 <p class="subtitle">Confira abaixo as nossas opções de pizzas:</p>
 
                 <div class="lista-pizzas">
-                    {{#each listaPizzas}}
+                    
+                    
                     <div class="pizza">
-                        <img src= "/images/{{this.dataValues.foto}}" alt="" />
+                        <img src="/images/{{this.dataValues.foto}}" alt="" />
                         <div>
                             <h3 class="title">{{this.dataValues.nome}}</h3>
                             <p>{{this.dataValues.descricao}}</p>
@@ -41,13 +50,16 @@
                                 Média (6 pedaços): <strong>R$ {{this.dataValues.precoMedia}}</strong><br>
                                 Grande (8 pedaços): <strong>R$ {{this.dataValues.precoGrande}}</strong>
                             </div>
-                            
+
                         </div>
                     </div>
                     {{/each}}
+                    {{else}}
+                    <p class="subtitle">Cárdapio indísponível!</p>
+                    {{/if}}
                 </div>
             </div>
-          
+
         </section>
 
         <div class="divider"></div>
@@ -131,14 +143,20 @@
 
         <div class="divider"></div>
 
-       
+
         <!-- Quarta página -->
         <section class="section" id="contact">
-             {{#if mensagemErro}}
-      <div class="msg-erro">
-            {{mensagemErro}}
-        </div>
-        {{/if}}
+            {{#if mensagemErro}}
+            <div class="msg-erro">
+                {{mensagemErro}}
+            </div>
+            {{/if}}
+
+            {{#if mensagemSucesso}}
+            <div class="msg-sucesso">
+                {{mensagemSucesso}}
+            </div>
+            {{/if}}
             <div class="container grid">
                 <div class="text">
                     <h2 class="title">Entre em contato com a gente !</h2>
@@ -166,7 +184,8 @@
                         <input type="text" name="nome" class="input-field" placeholder="* Nome completo:" required />
                         <input type="email" name="email" class="input-field" placeholder="* E-mail:" required />
                         <input type="text" name="titulo" class="input-field" placeholder="* Assunto:" required />
-                        <textarea name="mensagem" class="input-field" cols="1" rows="10" placeholder="* Digite sua mensagem..." required></textarea>
+                        <textarea name="mensagem" class="input-field" cols="1" rows="10"
+                            placeholder="* Digite sua mensagem..." required></textarea>
                         <button type="submit" class="button">
                             Enviar
                         </button>

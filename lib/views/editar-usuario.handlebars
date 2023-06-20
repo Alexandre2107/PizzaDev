@@ -10,15 +10,21 @@
         </div>
 
         {{#if mensagemErro}}
-            <div class="msg-erro">
+      <div class="msg-erro">
             {{mensagemErro}}
+        </div>
+        {{/if}}
+        
+        {{#if mensagemSucesso}}
+      <div class="msg-sucesso">
+            {{mensagemSucesso}}
         </div>
         {{/if}}
 
         <form action="" method="post">
             <input type="text" name="nomeCompleto" value="{{usuario.dataValues.nomeCompleto}}" id="nomeCompleto" class="input-field" placeholder="* Nome completo" required/>
             <input type="text" name="usuario" id="usuario" value="{{usuario.dataValues.usuario}}" class="input-field" placeholder="* Usuário" required/>
-            <input type="password" name="senha" id="senha" value="{{usuario.dataValues.senha}}" class="input-field" placeholder="* Senha" required/>
+            <input type="password" name="senha" id="senha" class="input-field" placeholder="* Senha" required/>
             <input type="password" name="confirmarSenha" id="confirmarSenha" class="input-field" placeholder="* Confirmar senha" required/>
             <button type="submit" class="botao">
                 Salvar

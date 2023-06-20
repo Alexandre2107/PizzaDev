@@ -11,11 +11,16 @@
 
 
         {{#if mensagemErro}}
-            <div class="msg-erro">
+      <div class="msg-erro">
             {{mensagemErro}}
         </div>
         {{/if}}
-  
+        
+        {{#if mensagemSucesso}}
+      <div class="msg-sucesso">
+            {{mensagemSucesso}}
+        </div>
+        {{/if}}
 
         <form href="/cadastrar-usuario" method="post">
             <input type="text" name="nomeCompleto" id="nomeCompleto" class="input-field" placeholder="* Nome completo" required/>

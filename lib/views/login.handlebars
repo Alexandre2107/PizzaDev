@@ -8,6 +8,12 @@
             {{mensagemErro}}
         </div>
         {{/if}}
+        
+        {{#if mensagemSucesso}}
+      <div class="msg-sucesso">
+            {{mensagemSucesso}}
+        </div>
+        {{/if}}
 
         <form action="" method="post">
             <input type="text" name="usuario" id="usuario" class="input-field" placeholder="* Usuário" required/>
