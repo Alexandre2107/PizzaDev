@@ -1,0 +1,38 @@
+create database if not exists pizzadev;
+
+use pizzadev;
+
+create table if not exists pizzas
+(
+    id            int auto_increment primary key,
+    nome          varchar(255) not null,
+    descricao     text         not null,
+    precoBrotinho float        not null,
+    precoMedia    float        not null,
+    precoGrande   float        not null,
+    createdAt     datetime     not null,
+    updatedAt     datetime     not null,
+    foto          varchar(100) not null
+);
+
+create table if not exists users
+(
+    id           int auto_increment primary key,
+    nomeCompleto varchar(255) not null,
+    usuario      varchar(255) not null,
+    senha        varchar(255) not null,
+    createdAt    date         null,
+    updatedAt    date         null
+);
+
+create table if not exists messages
+(
+    id        int auto_increment
+        primary key,
+    titulo    varchar(255) not null,
+    mensagem  text         not null,
+    email     varchar(255) not null,
+    createdAt datetime     not null,
+    updatedAt datetime     not null,
+    nome      varchar(100) not null
+);
